@@ -1,6 +1,7 @@
 package org.diveintojee.poc
 
-import org.junit.{Test, Assert}
+import org.junit.Test
+import org.junit.Assert._
 
 /**
  * User: louis.gueye@gmail.com
@@ -10,28 +11,22 @@ class QueryParserTest {
 
   /**
    * Expected:
-   * (EmptyClause)
+   * ("")
    */
   @Test
-  def shouldReturnEmptyClauseWithNullInput() {
-    val input = null
+  def shouldReturnEmptyStringWithEmptyInput() {
+    val input = ""
     val result = QueryParser.parse(input)
-    Assert assertTrue result.isInstanceOf[List[String]]
-    Assert assertTrue result.size == 1
-    Assert assertTrue result.apply(0).isInstanceOf[String]
+    assertEquals (result, List(""))
   }
 
   /**
-   * Expected:
-   * (EmptyClause)
    */
   @Test
-  def shouldReturnEmptyClauseWithEmptyInput() {
-    val input = ""
+  def shouldReturnListWithSeveralTokens() {
+    val input = "a b"
     val result = QueryParser.parse(input)
-    Assert assertTrue result.isInstanceOf[List[String]]
-    Assert assertTrue result.size == 1
-    Assert assertTrue result.apply(0).isInstanceOf[String]
+    assertEquals (result, List("a", "b"))
   }
 
 
