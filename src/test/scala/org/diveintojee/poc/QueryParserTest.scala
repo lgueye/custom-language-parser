@@ -14,19 +14,28 @@ class QueryParserTest {
    * ("")
    */
   @Test
-  def shouldReturnEmptyStringWithEmptyInput() {
+  def shouldReturnEmptyListWithEmptyInput() {
     val input = ""
     val result = QueryParser.parse(input)
-    assertEquals (result, List(""))
+    assertEquals (result, List())
   }
 
   /**
    */
   @Test
-  def shouldReturnListWithSeveralTokens() {
+  def shouldReturnListWithAndSemantic() {
     val input = "a b"
     val result = QueryParser.parse(input)
     assertEquals (result, List("a", "b"))
+  }
+
+  /**
+   */
+  @Test
+  def shouldReturnListOfListWithOrSemantic() {
+    val input = "a (b|c)"
+    val result = QueryParser.parse(input)
+    assertEquals (result, List(List("a"), List("b", "c")))
   }
 
 
